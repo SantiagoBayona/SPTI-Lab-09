@@ -16,16 +16,16 @@ import org.springframework.stereotype.Component;
 @SessionScoped
 public class LoginBean {
 
-    @Autowired
+    //@Autowired
     //UserService userService;
 
-    private String userName;
+    private String adminName;
     private String passwd;
-    public String getUserName() {
-        return userName;
+    public String getAdminName() {
+        return this.adminName;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String adminName) {
+        this.adminName = adminName;
     }
     public String getPasswd() {
         return passwd;
