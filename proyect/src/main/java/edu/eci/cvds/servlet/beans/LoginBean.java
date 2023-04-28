@@ -23,10 +23,11 @@ public class LoginBean {
 
     private String adminName;
     private String passwd;
+
     public String getAdminName() {
-        return this.adminName;
+        return adminName;
     }
-    public void setUserName(String adminName) {
+    public void setAdminName(String adminName) {
         this.adminName = adminName;
     }
     public String getPasswd() {
@@ -41,7 +42,7 @@ public class LoginBean {
         Administrator aux = adminService.getAdmin(this.adminName);
         if(aux != null){
             if(aux.getPassword().equals(this.passwd)){
-                route = "guess.xhtml";
+                route = "prueba.xhtml";
             }
         }
 
