@@ -8,16 +8,18 @@ import javax.faces.bean.SessionScoped;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Component;
+
+import edu.eci.cvds.servlet.services.AdminService;
+import edu.eci.cvds.servlet.model.Administrator;
 
 @Component
 @ManagedBean
 @SessionScoped
 public class LoginBean {
 
-    //@Autowired
-    //UserService userService;
+    @Autowired
+    AdminService adminService;
 
     private String adminName;
     private String passwd;
@@ -34,9 +36,9 @@ public class LoginBean {
         this.passwd = passwd;
     }
     
-    /*public String enter(){
-        String route = "welcome.xhtml";
-        Usuario aux = userService.getUser(this.userName);
+    public String enter(){
+        String route = "index.xhtml";
+        Administrator aux = adminService.getAdmin(this.adminName);
         if(aux != null){
             if(aux.getPassword().equals(this.passwd)){
                 route = "guess.xhtml";
@@ -45,5 +47,5 @@ public class LoginBean {
 
         return route;
     }
-    */
+    
 }
