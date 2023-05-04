@@ -7,22 +7,24 @@
       <!-- <h:outputStylesheet library="css" name="login.css"/> -->
       <link rel="stylesheet" href="estilos/login.css" />
 </h:head>
-<h:body id="p">
-      <div class="login-box">
-            <h:form id="welcome_form">
-            <h2>Login</h2>
-                  <div class="input-box">
-                        <p:inputText id="Usuario" value="#{loginBean.adminName}" required="true" />
-                        <p:outputLabel value="Usuario"/>
-                  </div>
-
-                  <div class="input-box">
-                        <p:inputText id="clave" type="password" value= "#{loginBean.passwd}" required="true"/>
-                        <p:outputLabel value="Clave"/>
-                  </div>
-            <p:commandButton value="Start" action="#{loginBean.enter}"/>
-      </h:form>
-      </div>
+<h:body >
+      <section>
+            <div class="login-box">
+                  <h:form id="welcome_form">
+                        <h2>Login</h2>
+                              <div class="input-box">
+                                    <p:inputText class="input" id="Usuario" value="#{loginBean.adminName}" required="true" />
+                                    <p:outputLabel class="label" value="Usuario"/>
+                              </div>
+      
+                              <div class="input-box">
+                                    <p:inputText class="input" id="clave" type="password" value= "#{loginBean.passwd}" required="true"/>
+                                    <p:outputLabel class="label" value="Clave"/>
+                              </div>    
+                              <p:commandButton type="button" value="Danger" styleClass="rounded-button ui-button-danger" />
+                        <p:commandButton class="buttom" value="Start" action="#{loginBean.enter}"/>
+                  </h:form>
+            </div>
+      </section>
 </h:body>
-
 </html>

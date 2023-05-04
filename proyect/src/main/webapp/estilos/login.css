@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
+
 * {
     margin: 0;
     padding: 0;
@@ -5,23 +7,35 @@
     font-family: "Poppins", sans-serif;
 }
 
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #000;
+section{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100vh;
+   background: url("../imagenes/bg.jpg") no-repeat; 
+   background-size: cover;
+   background-position: center;
+   animation: animateBg 5s linear infinite;
 }
+
+ @keyframes animateBg {
+    100%{
+        filter: hue-rotate(360deg);
+    }
+} 
 
 .login-box{
     position: relative;
     width: 600px;
-    height: 450;
-    background: red;
+    height: 550px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(10px);
 }
 
 h2{
@@ -29,3 +43,43 @@ h2{
     color: #fff;
     text-align: center;
 }
+
+.input-box{
+    width: 310px;
+    margin: 30px 0;
+    border-bottom: 2px solid #fff;
+}
+
+.input-box label {
+    position: relative;
+    font-size: 1em;
+    color: #fff;
+    pointer-events: none;
+}
+
+.input-box input{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #fff;
+}
+
+.buttom{
+    width: 100%;
+    height: 40px;
+    opacity: 1;
+    background: #000;
+    border-color: blue;
+}
+
+
+
+.custom.ui-button {
+    opacity: 1;
+    background: #000;
+    border-color: blue;
+}
+
