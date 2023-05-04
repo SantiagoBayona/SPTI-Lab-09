@@ -13,16 +13,23 @@
                   <h:form id="welcome_form">
                         <h2>Login</h2>
                               <div class="input-box">
+                                    <h:outputLabel class="label" value="Usuario"/>
                                     <p:inputText class="input" id="Usuario" value="#{loginBean.adminName}" required="true" />
-                                    <p:outputLabel class="label" value="Usuario"/>
+                                    <span class="icon">
+                                          <i class="pi pi-user"></i>
+                                    </span>
+                                    
                               </div>
       
                               <div class="input-box">
+                                    <h:outputLabel class="label" value="Clave"/>
                                     <p:inputText class="input" id="clave" type="password" value= "#{loginBean.passwd}" required="true"/>
-                                    <p:outputLabel class="label" value="Clave"/>
+                                    <span class="icon">
+                                          <i class="pi pi-lock"></i>
+                                    </span>
                               </div>    
-                              <p:commandButton type="button" value="Danger" styleClass="rounded-button ui-button-danger" />
-                        <p:commandButton class="buttom" value="Start" action="#{loginBean.enter}"/>
+                  
+                        <h:commandButton class="buttom" value="Ingresar" action="#{loginBean.enter}"/>
                   </h:form>
             </div>
       </section>
