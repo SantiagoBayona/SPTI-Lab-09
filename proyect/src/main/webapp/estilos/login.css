@@ -1,0 +1,131 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+section{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100vh;
+   background: url("../imagenes/bg.jpg") no-repeat; 
+   background-size: cover;
+   background-position: center;
+   animation: animateBg 5s linear infinite;
+}
+
+ @keyframes animateBg {
+    100%{
+        filter: hue-rotate(360deg);
+    }
+} 
+
+.login-box{
+    position: relative;
+    width: 600px;
+    height: 600px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+h2{
+    margin-top: -10px;
+    margin-bottom: 100px;
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+}
+
+.input-box{
+    width: 310px;
+    margin: 30px 0;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #fff;
+}
+
+
+.input-box .user {
+    position: absolute;
+    font-size: 1em;
+    color: #fff;
+    transition: all .5s !important;
+    transform: translateY(-30%) !important;
+    right: 235px;
+}
+
+.input-box .passwd {
+    position: absolute;
+    font-size: 1em;
+    color: #fff;
+    transition: all .5s !important;
+    transform: translateY(-30%) !important;
+    right: 252px;   
+}
+
+.input-box .input:hover ~ span .user,
+.input-box .input:hover ~ span .passwd,
+.input-box .input:focus ~ span .user,
+.input-box .input:focus ~ span .passwd{
+    transform: translateY(-60%) !important;
+ }
+
+ .input-box .input:hover ~ span.icon,
+ .input-box .input:focus ~ span.icon {
+    transform: translateY(-10%) !important;
+ }
+
+.input-box .input{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none !important;
+    outline: none !important;
+    font-size: 1em;
+    color: #fff;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 150px;
+    color: #fff;
+    font-size: 1.2em;
+    line-height: 65px;
+    transition: all .5s !important;
+}
+
+.buttom:hover{
+    height: 45px;
+    background-color: #fff !important;
+    color: red !important;
+    font-size: 1.2em;
+}
+
+.buttom{
+    width: 100%;
+    height: 40px;
+    margin-top: 30px !important;
+    margin-bottom: 5px !important;
+    background: rgba(255, 255, 255, .5) !important;
+    border: none !important;
+    outline: none !important;
+    border-radius: 40px !important;
+    cursor: pointer;
+    font-size: 1em;
+    color: #000 !important;
+    font-weight: 500;
+    transition: all .1s !important;
+}
+
+
+
