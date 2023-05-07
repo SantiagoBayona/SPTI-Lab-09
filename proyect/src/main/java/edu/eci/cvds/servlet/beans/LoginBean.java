@@ -42,7 +42,7 @@ public class LoginBean {
         Administrator aux = adminService.getAdmin(this.adminName);
         if(aux != null){
             if(aux.getPassword().equals(this.passwd)){
-                route = "prueba.xhtml";
+                route = "prueba.xhtml?faces-redirect=true";
             }
         }
 
