@@ -29,14 +29,18 @@ public class Appointment {
     private boolean termsAccepted;
     @Column(name = "description", nullable = false)
     private String description;
+    @Column(name = "signature", nullable = false)
+    private byte[] signature;
 
     public Appointment(){}
 
-    public Appointment(User user, Date startDate, Date endDate, boolean termsAccepted, String description) {
+    public Appointment(User user, Date startDate, Date endDate, boolean termsAccepted, String description, byte[] signature) {
+        this.user = user;
         this.startDate = startDate;
         this.endDate = endDate;
         this.termsAccepted = termsAccepted;
         this.description = description;
+        this.signature = signature;
     }
 
     public Long getId() {
@@ -85,5 +89,13 @@ public class Appointment {
     
     public void setDescription(String description){
         this.description = description;
+    }
+
+    public byte[] getSignature() {
+        return signature;
+    }
+
+    public void setSignature(byte[] signature) {
+        this.signature = signature;
     }
 }

@@ -25,7 +25,16 @@ public class AppointmentBean implements Serializable {
     private Date endDate;
     private boolean termsAccepted;
     private String description;
+    private byte[] signature;
     
+    public byte[] getSignature() {
+        return signature;
+    }
+
+    public void setSignature(byte[] signature) {
+        this.signature = signature;
+    }
+
     public Long getId() {
         return id;
     }

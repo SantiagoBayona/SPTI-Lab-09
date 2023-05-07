@@ -13,9 +13,9 @@ import javax.transaction.Transactional;
 @Transactional
 public class UserService {
     @Autowired
-    private static UserRepository userRepository;
+    private  UserRepository userRepository;
 
-    public static User createUser(User user) {
+    public  User createUser(User user) {
         return userRepository.save(user);
     }
 
@@ -36,7 +36,7 @@ public class UserService {
         }
     }
 
-    public User findUserByEmail(String email) {
+    public  User findUserByEmail(String email) {
         User user = userRepository.findByEmail(email);
         if (user != null) {
             return user;
