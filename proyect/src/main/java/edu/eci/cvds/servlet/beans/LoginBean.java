@@ -2,6 +2,7 @@ package edu.eci.cvds.servlet.beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 //import edu.eci.cvds.servlet.services.UserService;
 //import edu.eci.cvds.servlet.model.Usuario;
@@ -38,15 +39,19 @@ public class LoginBean {
     }
     
     public String enter(){
-        String route = "index.xhtml";
+        String route = "login.xhtml";
         Administrator aux = adminService.getAdmin(this.adminName);
         if(aux != null){
             if(aux.getPassword().equals(this.passwd)){
-                route = "prueba.xhtml?faces-redirect=true";
+                route = "private.xhtml?faces-redirect=true";
             }
         }
 
         return route;
+    }
+
+    public void signOut(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
     
 }

@@ -2,9 +2,11 @@ package edu.eci.cvds.servlet.beans;
 
 import edu.eci.cvds.servlet.model.User;
 import edu.eci.cvds.servlet.services.AppointmentService;
+import edu.eci.cvds.servlet.model.Appointment;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -26,6 +28,7 @@ public class AppointmentBean implements Serializable {
     private boolean termsAccepted;
     private String description;
     private byte[] signature;
+    private ArrayList<Appointment> appointments;
     
     public byte[] getSignature() {
         return signature;
@@ -85,6 +88,14 @@ public class AppointmentBean implements Serializable {
 
     public String logiregistern (){
         return "nextPage.xhtml";
+    }
+
+    public ArrayList<Appointment> getAppointments(){
+        return this.appointments;
+    }
+
+    public void updateAppointments(){
+        this.appointments= (ArrayList<Appointment>) this.appointmentService.findAllAppointments();
     }
 }
 

@@ -1,23 +1,41 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3c.org/1999/xhtml" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3c.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Citas para consulta</title>
-    <link rel="stylesheet" href="styles/private.css"/>
+    <link rel="stylesheet" href="CSS/private.css" />
 </h:head>
 <h:body class="body">
-    <span class="welcome_user" >
-        <i class="pi pi-user"></i>
-        <p:outputLabel class="text_welcome" value = "Bienvenido Usuario"/>
-    </span>
-    <span class="buttons">
-        <p:commandButton id="button1" value="Refrescar" icon="pi pi-undo" styleClass="rounded-button ui-button-info"/>
-        <p:commandButton id="button2" value="Sign out" icon="pi pi-sign-out" styleClass="rounded-button ui-button-danger" />
-    </span>
-    <div class="card">
-        <h:form id="form">
-        </h:form>
-    </div>
+    <h:form class= "structure">
+        <span class="welcome_user">
+            <i class="pi pi-user"></i>
+            <p:outputLabel class="text_welcome" value="Bienvenido/a #{loginBean.adminName}" />
+        </span>
+        <span class="buttons">
+            <p:commandButton id="button1" value="Refrescar" icon="pi pi-undo"
+                styleClass="rounded-button ui-button-info" actionListener="#{appointmentBean.updateAppointments()}" update="citas"/>
+            <p:commandButton id="button2" value="Sign out" icon="pi pi-sign-out"
+                styleClass="rounded-button ui-button-danger" actionListener="#{loginBean.signOut()}" action="login.xhtml?faces-redirect=true"/>
+        </span>
+        <h2>ESTA ES TU AGENDA</h2>
+        <div class="card">
+            <p:dataTable id="citas" var="appointment" value="#{appointmentBean.appointments}">
+                <p:column headerText="Nombre del Cliente">
+                    <h:outputText value="#{appointment.user.name}"/>
+                </p:column>
+                <p:column headerText="Fecha de inicio">
+                    <h:outputText value="#{appointment.startDate}"/>
+                </p:column>
+                <p:column headerText="TyC aceptados">
+                    <h:outputText value="#{appointment.termsAccepted}"/>
+                </p:column>
+            </p:dataTable>
+        </div>
+        <span class="descargar" >
+            <p:commandButton value="download" icon="pi pi-download" styleClass="ui-button-raised ui-button-success">
+                <p:dataExporter type="xls" target="citas" fileName="appointments" />
+            </p:commandButton>
+        </span>
+    </h:form>
 </h:body>
+
 </html>

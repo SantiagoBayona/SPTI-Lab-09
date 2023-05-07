@@ -5,37 +5,57 @@
     width: 100%;
     height: 100vh;
     background-position: center center;
-    background-image: url(../images/fondo2.jpg);
+    background-image: url(../imagenes/fondo2.jpg);
     background-size: cover;
     background-position: center;
 }
 
-.welcome_user {
+.body .structure .welcome_user {
     position: relative;
-    color: aliceblue;
+    color: whitesmoke;
     left: 100px;
     top: 40px;
     width: 65px;
     height: 70px;
 }
 
-.welcome_user .text_welcome {
+.body .welcome_user .text_welcome {
     position: absolute;
     left: 30px;
 }
 
-.buttons {
+.body .buttons {
     position: relative;
     right: -1200px;
     top: 40px;
 }
 
-#button1 {
+.body .structure .buttons #button1 {
     position: relative;
-    right: 33px;
+    left: 40px;
 }
 
 #button2 {
     position: relative;
-    right: 13px;
+    right: 30px;
+}
+
+h2{
+    position: relative;
+    top: 205px;
+    color: azure;
+    left: 35px;
+}
+
+.card{
+    position: relative;
+    top: 215px;
+    left: 35px;
+    width: 95%;
+}
+
+.descargar{
+    position: relative;
+    left: 1340px;
+    top: 55px;
 }

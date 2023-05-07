@@ -46,4 +46,8 @@ public class AppointmentService {
     public List<Appointment> findAppointmentsBetweenDates(Date startDate, Date endDate) {
         return appointmentRepository.findByStartDateBetween(startDate, endDate);
     }
+
+    public List<Appointment> findAllAppointments(){
+        return appointmentRepository.findAll();
+    }
 }
