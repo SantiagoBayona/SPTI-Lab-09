@@ -8,5 +8,8 @@
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver
 		</el-resolver>
 	</application>
-
+	<converter>
+    	<converter-id>dateConverter</converter-id>
+    	<converter-class>edu.eci.cvds.servlet.services.DateConverter</converter-class>
+	</converter>
 </faces-config>
