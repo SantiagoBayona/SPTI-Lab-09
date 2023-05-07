@@ -30,19 +30,20 @@
             <p:calendar class="entrada" id="startDate" value="#{appointmentBean.startDate}" showButtonPanel="true" pattern="dd/MM/yyyy HH" converter="dateConverter" />
 
             <p:outputLabel value="Firma:" for="signature" showRequired="false"/>
-            <p:fileUpload id="signature" value="#{appointmentBean.signature}" mode="simple" skinSimple="true" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+            <p:fileUpload  id="signature" value="#{appointmentBean.signature}" mode="simple" skinSimple="true" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
       
             <p:outputLabel value="Acepto los términos y condiciones:" for="termsAccepted" showRequired="false"/>
             <p:selectBooleanCheckbox id="termsAccepted" value="#{appointmentBean.termsAccepted}" required="true"/>
-            <p:commandLink value="Ver términos y condiciones" onclick="PF('dlgTerminosCondiciones').show(); return false;"/>
+            <p:commandLink  value="Ver términos y condiciones" onclick="PF('dlgTerminosCondiciones').show(); return false;" style="color: purple;"/>
+
+            <p:commandButton class="boton-formulario" value="Registrar consulta" action="#{appointmentBean.logiregistern}" ajax="false"/>
             
         </p:panelGrid>
         
-        <p:commandButton class="boton-formulario" value="Registrar consulta" action="#{appointmentBean.logiregistern}" ajax="false"/>
+        
     </h:form>
     
     <p:dialog header="Términos y condiciones" widgetVar="dlgTerminosCondiciones" modal="true">
-        <p>Los términos y condiciones serán provistos por HALS.</p>
         <p>El pago a realizar por la consulta no podrá ser devuelto a menos que en común acuerdo con HALS se determine esa opción.</p>
     </p:dialog>
 </h:body>

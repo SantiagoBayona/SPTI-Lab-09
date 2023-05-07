@@ -1,68 +1,68 @@
 :root{
-    --principal: #a129d4;
-  }
+  --principal: #a129d4;
+}
+
+body {
+  background-color: #dacff1;
   
-  body {
-    background-color: #dacff1;
-    
-  
-  }
-  
-  
-  h3,h1 {
-      color: var(--principal);
-    }
-    
-    label {
-      font-weight: bold;
-    }
-  
-    form{
-      margin: 0 auto; width: 50%;
-  
-    }
-    
-    input[type="text"], textarea {
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      font-size: 14px;
-    }
+
+}
 
 
-    .boton-formulario {
-      background-color: var(--principal);
-      color: black;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 16px;
-      margin-top: 20px;
-    }
-    
-    .dialog p {
-      margin: 10px;
-      font-size: 14px;
-    }
+h3,h1 {
+    color: var(--principal);
+  }
   
-    .centrar-texto{
-      text-align: center;
-    }
+  label {
+    font-weight: bold;
+  }
+
+  form{
+    margin: 0 auto; width: 50%;
+
+  }
   
-    .formulario{
-      background-color: gray;
-      width: min(60rem, 80%); /**utilizar el valor mas pequeño*/
-      margin: 0 auto;
-      padding: 2rem;
-      border-radius: 1rem;
-    }
+  input[type="text"], textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+  }
+
+
+  button.boton-formulario {
+    background-color: var(--principal);
+    color: black;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
   
-    .campo{
-      margin-bottom: 1rem;
-    }
-  
-  
-  
-    .entrada{
-      width: 80%;
-    }
+  .dialog p {
+    margin: 10px;
+    font-size: 14px;
+  }
+
+  .centrar-texto{
+    text-align: center;
+  }
+
+  form.formulario{
+    background-color: gray;
+    width: min(60rem, 80%); /**utilizar el valor mas pequeño*/
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+
+  .campo{
+    margin-bottom: 1rem;
+  }
+
+
+
+  .entrada{
+    width: 90%;
+  }
+
