@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Citas para consulta</title>
+    <link rel="stylesheet" href="styles/private.css"/>
+</h:head>
+<h:body class="body">
+    <span class="welcome_user" >
+        <i class="pi pi-user"></i>
+        <p:outputLabel class="text_welcome" value = "Bienvenido Usuario"/>
+    </span>
+    <span class="buttons">
+        <p:commandButton id="button1" value="Refrescar" icon="pi pi-undo" styleClass="rounded-button ui-button-info"/>
+        <p:commandButton id="button2" value="Sign out" icon="pi pi-sign-out" styleClass="rounded-button ui-button-danger" />
+    </span>
+    <div class="card">
+        <h:form id="form">
+        </h:form>
+    </div>
+</h:body>
+</html>
