@@ -12,8 +12,8 @@ import java.util.Arrays;
 //import edu.eci.cvds.servlet.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import edu.eci.cvds.servlet.services.AdminService;
-import edu.eci.cvds.servlet.model.Administrator;
+import edu.eci.cvds.servlet.services.*;
+import edu.eci.cvds.servlet.model.*;
 
 
 @SpringBootApplication
@@ -21,6 +21,8 @@ public class Main {
 
     @Autowired
     AdminService adminService;
+    @Autowired
+    AppointmentService appointmentService;
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }

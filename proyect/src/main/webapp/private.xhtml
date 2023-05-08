@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3c.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Citas para consulta</title>
+    <link rel="icon" href="imagenes/icon.png" />
     <link rel="stylesheet" href="CSS/private.css" />
 </h:head>
 <h:body class="body">
@@ -14,7 +15,7 @@
             <p:commandButton id="button1" value="Refrescar" icon="pi pi-undo"
                 styleClass="rounded-button ui-button-info" actionListener="#{appointmentBean.updateAppointments()}" update="citas"/>
             <p:commandButton id="button2" value="Sign out" icon="pi pi-sign-out"
-                styleClass="rounded-button ui-button-danger" actionListener="#{loginBean.signOut()}" action="login.xhtml?faces-redirect=true"/>
+                styleClass="rounded-button ui-button-danger" actionListener="#{loginBean.signOut()}" action="index.xhtml?faces-redirect=true"/>
         </span>
         <h2>ESTA ES TU AGENDA</h2>
         <div class="card">

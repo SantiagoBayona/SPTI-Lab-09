@@ -1,6 +1,8 @@
 package edu.eci.cvds.servlet.model;
 
 import java.sql.Date;
+import java.util.Arrays;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -93,6 +95,13 @@ public class Appointment {
 
     public byte[] getSignature() {
         return signature;
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment [id=" + id + ", user=" + user + ", startDate=" + startDate + ", endDate=" + endDate
+                + ", termsAccepted=" + termsAccepted + ", description=" + description + ", signature="
+                + Arrays.toString(signature) + "]";
     }
 
     public void setSignature(byte[] signature) {
