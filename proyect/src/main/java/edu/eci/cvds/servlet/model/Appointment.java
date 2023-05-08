@@ -2,6 +2,7 @@ package edu.eci.cvds.servlet.model;
 
 import java.sql.Date;
 import java.util.Arrays;
+import java.util.Objects;
 
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -104,7 +105,30 @@ public class Appointment {
                 + Arrays.toString(signature) + "]";
     }
 
-    public void setSignature(byte[] signature) {
-        this.signature = signature;
+    @Override
+    public int hashCode() {
+        int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((user == null) ? 0 : user.hashCode());
+        result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
+        result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
+        result = prime * result + (termsAccepted ? 1231 : 1237);
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
+        return result;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Appointment appointment = (Appointment) obj;
+        return termsAccepted == appointment.termsAccepted &&
+                Objects.equals(id, appointment.id) &&
+                Objects.equals(user, appointment.user) &&
+                Objects.equals(startDate, appointment.startDate) &&
+                Objects.equals(endDate, appointment.endDate) &&
+                Objects.equals(description, appointment.description) &&
+                Arrays.equals(signature, appointment.signature);
     }
 }
