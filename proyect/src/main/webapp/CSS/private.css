@@ -42,10 +42,12 @@
 
 h2{
     position: relative;
-    top: 205px;
-    color: azure;
+    top: 405px;
+    color: white;
     left: 35px;
 }
+
+
 
 .card{
     position: relative;
@@ -54,8 +56,8 @@ h2{
     width: 95%;
 }
 
-.descargar{
+.body .download{
     position: relative;
-    left: 1340px;
-    top: 55px;
+    left: 500px !important;
+    top: 65px;
 }

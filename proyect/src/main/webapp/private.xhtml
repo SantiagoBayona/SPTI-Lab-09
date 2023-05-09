@@ -13,13 +13,18 @@
         </span>
         <span class="buttons">
             <p:commandButton id="button1" value="Refrescar" icon="pi pi-undo"
-                styleClass="rounded-button ui-button-info" actionListener="#{appointmentBean.updateAppointments()}" update="citas"/>
+                styleClass="rounded-button ui-button-info" actionListener="#{appointmentBean.updateAppointments()}" update="dtcitas"/>
             <p:commandButton id="button2" value="Sign out" icon="pi pi-sign-out"
                 styleClass="rounded-button ui-button-danger" actionListener="#{loginBean.signOut()}" action="index.xhtml?faces-redirect=true"/>
         </span>
-        <h2>ESTA ES TU AGENDA</h2>
+        <span>
+            <h2>ESTA ES TU AGENDA</h2>
+            <p:commandButton class="download" value="download" icon="pi pi-download" styleClass="ui-button-raised ui-button-success" ajax="false">
+                <p:dataExporter type="xls" target="dtcitas" fileName="appointments" />
+            </p:commandButton>
+        </span>
         <div class="card">
-            <p:dataTable id="citas" var="appointment" value="#{appointmentBean.appointments}">
+            <p:dataTable id="dtcitas" var="appointment" value="#{appointmentBean.appointments}">
                 <p:column headerText="Nombre del Cliente">
                     <h:outputText value="#{appointment.user.name}"/>
                 </p:column>
@@ -28,14 +33,9 @@
                 </p:column>
                 <p:column headerText="TyC aceptados">
                     <h:outputText value="#{appointment.termsAccepted}"/>
-                </p:column>
+                </p:column> 
             </p:dataTable>
         </div>
-        <span class="descargar" >
-            <p:commandButton value="download" icon="pi pi-download" styleClass="ui-button-raised ui-button-success">
-                <p:dataExporter type="xls" target="citas" fileName="appointments" />
-            </p:commandButton>
-        </span>
     </h:form>
 </h:body>
 

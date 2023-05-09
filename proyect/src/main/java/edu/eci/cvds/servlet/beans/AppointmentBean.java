@@ -1,6 +1,7 @@
 package edu.eci.cvds.servlet.beans;
 
 import edu.eci.cvds.servlet.model.User;
+import edu.eci.cvds.servlet.services.UserService;
 import edu.eci.cvds.servlet.services.AppointmentService;
 import edu.eci.cvds.servlet.model.Appointment;
 
@@ -15,20 +16,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@ManagedBean(name = "userBean")
+@ManagedBean
 @SessionScoped
 public class AppointmentBean implements Serializable {
 
     @Autowired
     AppointmentService appointmentService;
+    @Autowired
+    UserService userService;
     private Long id;
-    private User user;
+    private String name;
+    private int telephone;
+    private String email;
     private Date startDate;
     private Date endDate;
     private boolean termsAccepted;
     private String description;
     private byte[] signature;
     private ArrayList<Appointment> appointments;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(int telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
     public byte[] getSignature() {
         return signature;
@@ -44,14 +73,6 @@ public class AppointmentBean implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Date getStartDate() {
@@ -87,6 +108,9 @@ public class AppointmentBean implements Serializable {
     }
 
     public String logiregistern (){
+        User temp = new User(this.name, this.email, "no pass",this.description);
+        this.userService.createUser(temp);
+        this.appointmentService.createAppointment(new Appointment(temp, this.startDate, this.termsAccepted, this.description));
         return "nextPage.xhtml";
     }
 

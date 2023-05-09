@@ -22,28 +22,28 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_name", nullable = false)
     private User user;
     @Column(name = "start_date", nullable = false)
     private Date startDate;
-    @Column(name = "end_date", nullable = false)
-    private Date endDate;
+    /*@Column(name = "end_date", nullable = false)
+    private Date endDate;*/
     @Column(name = "terms_accepted", nullable = false)
     private boolean termsAccepted;
     @Column(name = "description", nullable = false)
     private String description;
-    @Column(name = "signature", nullable = false)
-    private byte[] signature;
+    /*@Column(name = "signature", nullable = false)
+    private byte[] signature;*/
 
     public Appointment(){}
 
-    public Appointment(User user, Date startDate, Date endDate, boolean termsAccepted, String description, byte[] signature) {
+    public Appointment(User user, Date startDate, boolean termsAccepted, String description) {
         this.user = user;
         this.startDate = startDate;
-        this.endDate = endDate;
+        //this.endDate = endDate;
         this.termsAccepted = termsAccepted;
         this.description = description;
-        this.signature = signature;
+        //this.signature = signature;
     }
 
     public Long getId() {
@@ -54,14 +54,6 @@ public class Appointment {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Date getStartDate() {
         return startDate;
     }
@@ -70,13 +62,13 @@ public class Appointment {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    /*public Date getEndDate() {
         return endDate;
     }
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
+    }*/
 
     public boolean getTermsAccepted() {
         return termsAccepted;
@@ -94,41 +86,68 @@ public class Appointment {
         this.description = description;
     }
 
-    public byte[] getSignature() {
-        return signature;
+    public User getUser() {
+        return user;
     }
 
-    @Override
-    public String toString() {
-        return "Appointment [id=" + id + ", user=" + user + ", startDate=" + startDate + ", endDate=" + endDate
-                + ", termsAccepted=" + termsAccepted + ", description=" + description + ", signature="
-                + Arrays.toString(signature) + "]";
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public int hashCode() {
-        int prime = 31;
+        final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((user == null) ? 0 : user.hashCode());
         result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
-        result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
         result = prime * result + (termsAccepted ? 1231 : 1237);
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         return result;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Appointment appointment = (Appointment) obj;
-        return termsAccepted == appointment.termsAccepted &&
-                Objects.equals(id, appointment.id) &&
-                Objects.equals(user, appointment.user) &&
-                Objects.equals(startDate, appointment.startDate) &&
-                Objects.equals(endDate, appointment.endDate) &&
-                Objects.equals(description, appointment.description) &&
-                Arrays.equals(signature, appointment.signature);
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Appointment other = (Appointment) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (user == null) {
+            if (other.user != null)
+                return false;
+        } else if (!user.equals(other.user))
+            return false;
+        if (startDate == null) {
+            if (other.startDate != null)
+                return false;
+        } else if (!startDate.equals(other.startDate))
+            return false;
+        if (termsAccepted != other.termsAccepted)
+            return false;
+        if (description == null) {
+            if (other.description != null)
+                return false;
+        } else if (!description.equals(other.description))
+            return false;
+        return true;
     }
+
+    @Override
+    public String toString() {
+        return "Appointment [id=" + id + ", user=" + user + ", startDate=" + startDate + ", termsAccepted="
+                + termsAccepted + ", description=" + description + "]";
+    }
+    
+    /*public byte[] getSignature() {
+        return signature;
+    }*/
+    
 }

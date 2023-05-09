@@ -16,13 +16,13 @@
         
         <p:panelGrid columns="2" layout="grid">
             <p:outputLabel value="Nombre completo:" for="name" showRequired="false"/>
-            <p:inputText class="entrada"  id="name" value="#{userBean.name}" required="true"/>
+            <p:inputText class="entrada"  id="name" value="#{appointmentBean.name}" required="true"/>
             
             <p:outputLabel value="Correo electrónico:" for="email" showRequired="false"/>
-            <p:inputText class="entrada" id="email" value="#{userBean.email}" required="true"/>
+            <p:inputText class="entrada" id="email" value="#{appointmentBean.email}" required="true"/>
             
             <p:outputLabel value="Teléfono de contacto:" for="telephone" showRequired="false"/>
-            <p:inputText class="entrada" id="telephone" value="#{userBean.telephone}" required="true"/>
+            <p:inputText class="entrada" id="telephone" value="#{appointmentBean.telephone}" required="true"/>
             
             <p:outputLabel value="Descripción de la consulta:" for="description" showRequired="false"/>
             <p:inputTextarea class="entrada" id="description" value="#{appointmentBean.description}" rows="5"/>
