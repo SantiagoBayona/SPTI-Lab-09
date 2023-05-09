@@ -79,7 +79,7 @@ public class AppointmentServiceTest {
     @Test
     public void testFindAppointmentsByUser() {
         User user = new User();
-        user.setId(1L);
+        //user.setId(1L);
         List<Appointment> appointments = new ArrayList<>();
         Appointment appointment1 = new Appointment();
         appointment1.setId(1L);
@@ -103,12 +103,12 @@ public class AppointmentServiceTest {
         Appointment appointment1 = new Appointment();
         appointment1.setId(1L);
         appointment1.setStartDate(startDate);
-        appointment1.setEndDate(endDate);
+        //appointment1.setEndDate(endDate);
         appointments.add(appointment1);
         Appointment appointment2 = new Appointment();
         appointment2.setId(2L);
         appointment2.setStartDate(startDate);
-        appointment2.setEndDate(endDate);
+        //appointment2.setEndDate(endDate);
         appointments.add(appointment2);
         when(appointmentRepository.findByStartDateBetween(startDate, endDate)).thenReturn(appointments);
         List<Appointment> foundAppointments = appointmentService.findAppointmentsBetweenDates(startDate, endDate);

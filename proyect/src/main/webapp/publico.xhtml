@@ -40,13 +40,13 @@
 
                 <div class="signature">
                     <h:outputLabel class="label" value="Firma:" showRequired="false"/>
-                    <p:signature style="width:400px;height:200px" widgetVar="sig" value="#{signatureView.value}" required="true" guideline="true"/>
+                    <p:signature style="width:400px;height:200px" widgetVar="sig" value="#{appointmentBean.signature}" required="true" guideline="true"/>
                     <p:commandButton value="Submit" icon="pi pi-check" update="output"/>
                     <p:commandButton value="Clear" icon="pi pi-times" type="button" onclick="PF('sig').clear()" styleClass="ui-button-flat ml-2"/>
     
                     <p:outputPanel id="output">
-                        <h:outputText rendered="#{not empty signatureView.value}" style="font-size:1.5rem" styleClass="block mb-2" value="Your Signature" />
-                        <p:signature style="width:400px;height:200px;" value="#{signatureView.value}" readonly="true" rendered="#{not empty signatureView.value}" backgroundColor="#eaeaea" color="#03a9f4"/>
+                        <h:outputText rendered="#{not empty appointmentBean.signature}" style="font-size:1.5rem" styleClass="block mb-2" value="Your Signature" />
+                        <p:signature style="width:400px;height:200px;" value="#{appointmentBean.signature}" readonly="true" rendered="#{not empty appointmentBean.signature}" backgroundColor="#eaeaea" color="#03a9f4"/>
                     </p:outputPanel>     
                 </div>
                 
@@ -57,7 +57,7 @@
 
                 <div class="agendar">
                     <p:commandLink  value="Ver términos y condiciones" onclick="PF('dlgTerminosCondiciones').show(); return false;" style="color: purple;"/>
-                    <p:commandButton class="boton-formulario" value="Registrar consulta" action="#{appointmentBean.logiregistern}" ajax="false"/>
+                    <p:commandButton class="boton-formulario" value="Registrar consulta" action="#{appointmentBean.logiregistern}"/>
                     
                 </div>
             

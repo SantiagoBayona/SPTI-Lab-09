@@ -32,7 +32,7 @@ public class AppointmentBean implements Serializable {
     private Date endDate;
     private boolean termsAccepted;
     private String description;
-    private byte[] signature;
+    private String signature;
     private ArrayList<Appointment> appointments;
 
     public String getName() {
@@ -59,11 +59,11 @@ public class AppointmentBean implements Serializable {
         this.email = email;
     }
     
-    public byte[] getSignature() {
+    public String getSignature() {
         return signature;
     }
 
-    public void setSignature(byte[] signature) {
+    public void setSignature(String signature) {
         this.signature = signature;
     }
 
@@ -110,8 +110,8 @@ public class AppointmentBean implements Serializable {
     public String logiregistern (){
         User temp = new User(this.name, this.email, "no pass",this.description);
         this.userService.createUser(temp);
-        this.appointmentService.createAppointment(new Appointment(temp, this.startDate, this.termsAccepted, this.description));
-        return "nextPage.xhtml";
+        this.appointmentService.createAppointment(new Appointment(temp, this.startDate, this.termsAccepted, this.description, this.signature));
+        return "index.xhtml?faces-redirect=true";
     }
 
     public ArrayList<Appointment> getAppointments(){

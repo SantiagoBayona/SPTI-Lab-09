@@ -1,8 +1,7 @@
 package edu.eci.cvds.servlet.model;
 
 import java.sql.Date;
-import java.util.Arrays;
-import java.util.Objects;
+
 
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -32,18 +31,18 @@ public class Appointment {
     private boolean termsAccepted;
     @Column(name = "description", nullable = false)
     private String description;
-    /*@Column(name = "signature", nullable = false)
-    private byte[] signature;*/
+    @Column(name = "signature", nullable = false)
+    private String signature;
 
     public Appointment(){}
 
-    public Appointment(User user, Date startDate, boolean termsAccepted, String description) {
+    public Appointment(User user, Date startDate, boolean termsAccepted, String description, String signature) {
         this.user = user;
         this.startDate = startDate;
         //this.endDate = endDate;
         this.termsAccepted = termsAccepted;
         this.description = description;
-        //this.signature = signature;
+        this.signature = signature;
     }
 
     public Long getId() {
@@ -146,8 +145,12 @@ public class Appointment {
                 + termsAccepted + ", description=" + description + "]";
     }
     
-    /*public byte[] getSignature() {
+    public String getSignature() {
         return signature;
-    }*/
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
     
 }
