@@ -8,45 +8,7 @@
     <link rel="icon" href="imagenes/icon.png" />
     <link rel="stylesheet" type="text/css" href="CSS/agendacion_citas.css"/>
 </h:head>
-<h:body>
-<<<<<<< HEAD
-    <header>
-        <h1 class="centrar-texto">Programacion de Consulta</h1>
-    </header>
-    <h:form class="formulario">
-        
-        <p:panelGrid columns="2" layout="grid">
-            <p:outputLabel value="Nombre completo:" for="name" showRequired="false"/>
-            <p:inputText class="entrada"  id="name" value="#{appointmentBean.name}" required="true"/>
-            
-            <p:outputLabel value="Correo electrónico:" for="email" showRequired="false"/>
-            <p:inputText class="entrada" id="email" value="#{appointmentBean.email}" required="true"/>
-            
-            <p:outputLabel value="Teléfono de contacto:" for="telephone" showRequired="false"/>
-            <p:inputText class="entrada" id="telephone" value="#{appointmentBean.telephone}" required="true"/>
-            
-            <p:outputLabel value="Descripción de la consulta:" for="description" showRequired="false"/>
-            <p:inputTextarea class="entrada" id="description" value="#{appointmentBean.description}" rows="5"/>
-
-            <p:outputLabel value="Fecha:" for="startDate" showRequired="false"/>
-            <p:calendar class="entrada" id="startDate" value="#{appointmentBean.startDate}" showButtonPanel="true" pattern="dd/MM/yyyy HH" converter="dateConverter" />
-
-            <p:outputLabel value="Firma:" for="signature" showRequired="false"/>
-            <p:fileUpload  id="signature" value="#{appointmentBean.signature}" mode="simple" skinSimple="true" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-      
-            <p:outputLabel value="Acepto los términos y condiciones:" for="termsAccepted" showRequired="false"/>
-            <p:selectBooleanCheckbox id="termsAccepted" value="#{appointmentBean.termsAccepted}" required="true"/>
-            <p:commandLink  value="Ver términos y condiciones" onclick="PF('dlgTerminosCondiciones').show(); return false;" style="color: purple;"/>
-
-            <p:commandButton class="boton-formulario" value="Registrar consulta" action="#{appointmentBean.logiregistern}" ajax="false"/>
-            
-        </p:panelGrid>
-        
-        
-    </h:form>
-=======
->>>>>>> 11792fc363d671388468cd34900e34ed58787807
-    
+<h:body>    
     <section>
         <div class="cita-box">
             <h:form class="formulario">
