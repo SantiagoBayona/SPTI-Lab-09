@@ -33,7 +33,7 @@
                     <p:inputTextarea class="entrada" id="description" value="#{appointmentBean.description}" rows="5"/>
                 </div>
 
-                <div class="input-box">
+                <div class="input-box no-border">
                     <h:outputLabel class="label" value="Fecha:" for="startDate" showRequired="false"/>
                     <p:calendar class="entrada" id="startDate" value="#{appointmentBean.startDate}" showButtonPanel="true" pattern="dd/MM/yyyy HH" converter="dateConverter" />
                 </div>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="agendar">
-                    <p:commandLink  value="Ver términos y condiciones" onclick="PF('dlgTerminosCondiciones').show(); return false;" style="color: purple;"/>
+                    <p:commandLink  value="Ver términos y condiciones" onclick="PF('dlgTerminosCondiciones').show(); return false;" style="color: cyan;"/>
                     <p:commandButton class="boton-formulario" value="Registrar consulta" action="#{appointmentBean.logiregistern}"/>
                     
                 </div>
