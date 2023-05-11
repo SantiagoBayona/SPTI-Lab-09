@@ -47,6 +47,7 @@ public class Main {
             adminService.addAdmin(new Administrator("Liliana", "1234a"));
             System.out.println("the admins...");
             System.out.println(adminService.getAdmin("Liliana").toString());
+            System.out.println(adminService.getAdmins());
         };
     }
 }

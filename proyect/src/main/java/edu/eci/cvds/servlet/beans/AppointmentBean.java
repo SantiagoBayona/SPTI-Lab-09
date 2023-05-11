@@ -1,23 +1,23 @@
 package edu.eci.cvds.servlet.beans;
 
-import edu.eci.cvds.servlet.model.User;
-import edu.eci.cvds.servlet.services.UserService;
-import edu.eci.cvds.servlet.services.AppointmentService;
-import edu.eci.cvds.servlet.model.Appointment;
-
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import edu.eci.cvds.servlet.model.Appointment;
+import edu.eci.cvds.servlet.model.User;
+import edu.eci.cvds.servlet.services.AppointmentService;
+import edu.eci.cvds.servlet.services.UserService;
+
 @Component
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class AppointmentBean implements Serializable {
 
     @Autowired
