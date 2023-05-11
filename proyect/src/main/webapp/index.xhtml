@@ -1,30 +1,111 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3c.org/1999/xhtml" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-<h:head></h:head>
-<h:body>
-      <style>
-            h1{
-                  color: #ed1c24;
-                  font-weight: bold;
-                  font-size: 40px;
-                  font-family: monospace;
-                  text-transform: uppercase;
-                  text-align: center;
-            }
-      </style>
-      <h:form id="welcome_form">
-            <h1>bienvenido</h1>
-            <h:panelGrid columns="2">
-                  <p:outputLabel value="Digite su nombre de usuario:  "/>
-                  <p:inputText id="Usuario" value="#{loginBean.userName}" required="true" />
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:p="http://primefaces.org/ui">
+    <head>
+        <link rel="icon" href="imagenes/icon.png" />
+        <link rel="stylesheet" type="text/css" href="CSS/index.css" />
+    </head>
+    <body>
+        <header>
+            <a href="#" class="logo">Logo</a>
+            <ul>
+                <li><a href="publico.xhtml" class="active">Achedule Appointment</a></li>
+                <li><a href="login.xhtml">Sign in</a></li>
+                <li><a href="#">Sing Up</a></li>
+                <li><a href="#">contact</a></li>
+            </ul>
+        </header>
+        <section>
+            <img src="imagenes/stars.png" id="stars" />
+            <img src="imagenes/moon.png" id="moon" />
+            <img src="imagenes/mountains_behind.png" id="mountains_behind" />
+            <h2 id="text">Welcome To HALS</h2>
+            <a href="#sec" id="btn">Explore</a>
+            <img src="imagenes/mountains_front.png" id="mountains_front" />
+        </section>
+        <div class="sec" id="sec">
+            <h2>QUIENES SOMOS</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione! Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis<br/><br/>
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                <br/><br/>
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio suscipit assumenda, numquam tenetur pariatur 
+                aspernatur magni possimus quas saepe, maxime corporis 
+                commodi illo ea, atque asperiores voluptatem at officiis
+                ratione!</p>
+        </div>
 
-                  <p:outputLabel value="Digite su clave:  "/>
-                  <p:inputText id="clave" value= "#{loginBean.passwd}" required="true"/>
-            </h:panelGrid>
-            <p:commandButton value="Start" action="#{loginBean.enter}"/>
-      </h:form>
-</h:body>
+        <script>
+            let stars = document.getElementById("stars");
+            let moon = document.getElementById("moon");
+            let mountains_behind = document.getElementById("mountains_behind");
+            let text = document.getElementById("text");
+            let btn = document.getElementById("btn");
+            let mountains_front = document.getElementById("mountains_front");
+            let header = document.querySelector("header");
 
+            window.addEventListener("scroll", function(){
+                let value = window.scrollY;
+                stars.style.left = value * 0.25 +"px";
+                moon.style.top = value * 1.05 +"px";
+                mountains_behind.style.top = value * 0.5 +"px";
+                mountains_front.style.top = value * 0 + "px";
+                text.style.marginRight = value * 4 +"px";
+                text.style.marginTop = value * 1,5 +"px";
+                btn.style.marginTop = value * 1.5 +"px";
+                header.style.top = value *0.5 + "px";
+            })
+        </script>
+    </body>
 </html>

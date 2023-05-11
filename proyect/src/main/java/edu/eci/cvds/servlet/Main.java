@@ -12,12 +12,17 @@ import java.util.Arrays;
 //import edu.eci.cvds.servlet.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import edu.eci.cvds.servlet.services.*;
+import edu.eci.cvds.servlet.model.*;
 
 
 @SpringBootApplication
 public class Main {
 
     @Autowired
+    AdminService adminService;
+    @Autowired
+    AppointmentService appointmentService;
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
@@ -33,5 +38,16 @@ public class Main {
         srb.setUrlMappings(Arrays.asList("*.xhtml"));
         srb.setLoadOnStartup(1);
         return srb;
-    }  
+    }
+
+    @Bean
+    public CommandLineRunner addingAdmins(){
+        return args -> {
+            System.out.println("Adding Admins...");
+            adminService.addAdmin(new Administrator("Liliana", "1234a"));
+            System.out.println("the admins...");
+            System.out.println(adminService.getAdmin("Liliana").toString());
+            System.out.println(adminService.getAdmins());
+        };
+    }
 }

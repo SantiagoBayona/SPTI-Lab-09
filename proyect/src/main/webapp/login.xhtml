@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+      <link rel="icon" href="imagenes/icon.png" />
+      <!-- <h:outputStylesheet library="css" name="login.css"/> -->
+      <link rel="stylesheet" href="CSS/login.css" />
+</h:head>
+<h:body >
+      <section>
+            <div class="login-box">
+                  <h:form id="welcome_form">
+                        <h2>Login</h2>
+                              <div class="input-box">
+                                    <p:inputText class="input" id="Usuario" value="#{loginBean.adminName}" required="true" />
+                                    <span class="icon">
+                                          <h:outputLabel class="user" value="Usuario"/>
+                                          <i class="pi pi-user"></i>
+                                    </span>
+                                    
+                              </div>
+                              
+                              <div class="input-box">
+                                    <p:password class="input" id="clave" type="password" value= "#{loginBean.passwd}" required="true" />
+                                    <span class="icon">
+                                          <h:outputLabel class="passwd" value="Clave"/>
+                                          <i class="pi pi-lock"></i>
+                                    </span>
+                              </div>    
+                      
+                        <p:commandButton class="buttom" value="Ingresar" update="welcome_form" icon="pi pi-sign-in" iconPos="right"    action="#{loginBean.enter}"/>
+                  </h:form>
+            </div>
+      </section>
+</h:body>
+</html>

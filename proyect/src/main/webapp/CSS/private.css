@@ -1,0 +1,107 @@
+body{
+    background: url("../imagenes/fondo2.jpg") no-repeat; 
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+  }
+
+ .structure .welcome_user {
+    color: whitesmoke;
+    left: 100px;
+    top: 40px;
+    width: 65px;
+    height: 70px;
+}
+
+.welcome_user .text_welcome {
+    position: absolute;
+    left: 30px;
+}
+
+
+
+
+
+#button2 {
+    position: relative;
+    right: 30px;
+}
+
+h2{
+    position: relative;
+    top: 405px;
+    color: white;
+    left: 35px;
+}
+h1{
+    color: antiquewhite;
+}
+
+
+.card{
+    top: 215px;
+    left: 35px;
+    width: 95%;
+}
+
+.download{
+    position: relative;
+    right: -1000px;
+    margin-top: 50px;
+}
+
+
+.contenedor {
+    max-width: 120rem;
+    width: 90%;
+    width: min(90%, 120rem);
+    margin: 0 auto;
+    margin-top: 5rem;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.centrar-texto {
+    text-align: center;
+}
+
+
+
+.header{
+    height: 10rem;
+}
+
+.header__texto{
+    text-align: center;
+    margin: 0;
+
+}
+
+i,.text_welcome{
+    color: antiquewhite;
+}
+
+.buttons {
+    margin-bottom: 50px;
+}
+.card{
+    left: 35px;
+    right: 100px;
+}
+
+.button-down{
+    position: relative;
+    margin-top: 30px;
+}
+
+.sign-out{
+    position: relative;
+    Left: 90px;
+}
