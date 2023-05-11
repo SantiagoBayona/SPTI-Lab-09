@@ -8,8 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 import java.util.Arrays;
-//import edu.eci.cvds.servlet.model.Usuario;
-//import edu.eci.cvds.servlet.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import edu.eci.cvds.servlet.services.*;

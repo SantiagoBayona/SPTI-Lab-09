@@ -25,8 +25,6 @@ public class Appointment {
     private User user;
     @Column(name = "start_date", nullable = false)
     private Date startDate;
-    /*@Column(name = "end_date", nullable = false)
-    private Date endDate;*/
     @Column(name = "terms_accepted", nullable = false)
     private boolean termsAccepted;
     @Column(name = "description", nullable = false)
@@ -39,7 +37,6 @@ public class Appointment {
     public Appointment(User user, Date startDate, boolean termsAccepted, String description, String signature) {
         this.user = user;
         this.startDate = startDate;
-        //this.endDate = endDate;
         this.termsAccepted = termsAccepted;
         this.description = description;
         this.signature = signature;
@@ -60,14 +57,6 @@ public class Appointment {
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
-
-    /*public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }*/
 
     public boolean getTermsAccepted() {
         return termsAccepted;

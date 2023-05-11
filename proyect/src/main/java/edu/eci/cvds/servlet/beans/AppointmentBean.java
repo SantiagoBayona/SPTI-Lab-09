@@ -111,7 +111,16 @@ public class AppointmentBean implements Serializable {
         User temp = new User(this.name, this.email, "no pass",this.description);
         this.userService.createUser(temp);
         this.appointmentService.createAppointment(new Appointment(temp, this.startDate, this.termsAccepted, this.description, this.signature));
+        this.reset();
         return "index.xhtml?faces-redirect=true";
+    }
+
+    private void reset(){
+        this.name = "";
+        this.email = "";
+        this.telephone = 0;
+        this.description = "";
+        this.signature = "";
     }
 
     public ArrayList<Appointment> getAppointments(){
