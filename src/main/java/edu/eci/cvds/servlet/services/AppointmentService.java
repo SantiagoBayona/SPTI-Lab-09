@@ -5,6 +5,9 @@ import edu.eci.cvds.servlet.model.User;
 import edu.eci.cvds.servlet.repositories.AppointmentRepository;
 import edu.eci.cvds.exception.Exception;
 
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +22,10 @@ public class AppointmentService {
     private AppointmentRepository appointmentRepository;
 
     public Appointment createAppointment(Appointment appointment) {
-        return appointmentRepository.save(appointment);
+        Appointment savedAppointment = appointmentRepository.save(appointment);
+        sendConfirmationEmail(savedAppointment.getUser(), savedAppointment);
+        return savedAppointment;
     }
-
     public Appointment updateAppointment(Appointment appointment) {
         return appointmentRepository.save(appointment);
     }
@@ -49,5 +53,33 @@ public class AppointmentService {
 
     public List<Appointment> findAllAppointments(){
         return appointmentRepository.findAll();
+    }
+//mizyyfjtlahjotik
+    private void sendConfirmationEmail(User user, Appointment appointment) {
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+        Session session = Session.getDefaultInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("airetupalCVDS@gmail.com", "mizyyfjtlahjotik");
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("airetupalCVDS@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getEmail()));
+            message.setSubject("Confirmación de cita");
+            message.setText("Hola " + user.getName() + ",\n\n"
+                + "Te confirmamos que tu cita para el día " + appointment.getStartDate()
+                + " a las " + appointment.getTime() + " ha sido agendada correctamente.\n\n"
+                + "¡Gracias por confiar en nosotros!");
+            Transport.send(message);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
