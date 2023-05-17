@@ -1,7 +1,7 @@
 package edu.eci.cvds.servlet.beans;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import edu.eci.cvds.servlet.services.AdminService;
 
 @Component
 @ManagedBean
-@ApplicationScoped
+@ViewScoped
 public class LoginBean {
 
     @Autowired
@@ -42,12 +42,12 @@ public class LoginBean {
                 route = "private.xhtml?faces-redirect=true";
             }
         }
+        this.adminName = "";
         return route;
         
     }
 
     public void signOut(){
-        this.adminName = "";
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
     

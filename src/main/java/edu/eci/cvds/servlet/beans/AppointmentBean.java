@@ -26,14 +26,13 @@ public class AppointmentBean implements Serializable {
     UserService userService;
     private Long id;
     private String name;
-    private String telephone;
+    private int telephone;
     private String email;
     private Date startDate;
+    private Date endDate;
     private boolean termsAccepted;
     private String description;
     private String signature;
-    private String state = "Agendada";
-    private Appointment selectedAppointment;
     private ArrayList<Appointment> appointments;
 
     public String getName() {
@@ -44,11 +43,11 @@ public class AppointmentBean implements Serializable {
         this.name = name;
     }
 
-    public String getTelephone() {
+    public int getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(String telephone) {
+    public void setTelephone(int telephone) {
         this.telephone = telephone;
     }
 
@@ -84,6 +83,14 @@ public class AppointmentBean implements Serializable {
         this.startDate = startDate;
     }
 
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
     public boolean getTermsAccepted() {
         return termsAccepted;
     }
@@ -100,26 +107,10 @@ public class AppointmentBean implements Serializable {
         this.description = description;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public Appointment getSelectedAppointment() {
-        return selectedAppointment;
-    }
-
-    public void setSelectedAppointment(Appointment selectedAppointment) {
-        this.selectedAppointment = selectedAppointment;
-    }
-
     public String logiregistern (){
-        User temp = new User(this.name, this.email, this.telephone,"no pass");
+        User temp = new User(this.name, this.email, "no pass",this.description);
         this.userService.createUser(temp);
-        this.appointmentService.createAppointment(new Appointment(temp, this.startDate, this.termsAccepted, this.description, this.signature, this.state));
+        this.appointmentService.createAppointment(new Appointment(temp, this.startDate, this.termsAccepted, this.description, this.signature));
         this.reset();
         return "index.xhtml?faces-redirect=true";
     }
@@ -127,10 +118,9 @@ public class AppointmentBean implements Serializable {
     private void reset(){
         this.name = "";
         this.email = "";
-        this.telephone = "";
+        this.telephone = 0;
         this.description = "";
         this.signature = "";
-        this.state = "Agendada";
     }
 
     public ArrayList<Appointment> getAppointments(){
@@ -139,11 +129,6 @@ public class AppointmentBean implements Serializable {
 
     public void updateAppointments(){
         this.appointments= (ArrayList<Appointment>) this.appointmentService.findAllAppointments();
-    }
-
-    public void modifyState(String state){
-        this.selectedAppointment.setState(state);
-        this.appointmentService.updateAppointment(this.selectedAppointment);
     }
 }
 

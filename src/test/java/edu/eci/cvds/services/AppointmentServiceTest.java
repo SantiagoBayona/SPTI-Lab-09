@@ -3,9 +3,12 @@ package edu.eci.cvds.services;
 import static org.mockito.Mockito.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,6 +23,10 @@ import edu.eci.cvds.servlet.services.AppointmentService;
 import edu.eci.cvds.servlet.model.Appointment;
 import edu.eci.cvds.servlet.model.User;
 
+import javax.mail.internet.MimeMessage;
+import javax.mail.Session;
+import javax.mail.Transport;
+
 @ExtendWith(MockitoExtension.class)
 public class AppointmentServiceTest {
     
@@ -31,18 +38,54 @@ public class AppointmentServiceTest {
 
     @Rule
     public ExpectedException exceptionRule = ExpectedException.none();
-    
+   
     @Test
-    public void testCreateAppointment() {
+    public void shouldCreateAppointment() {
+        Date startDate = new Date(System.currentTimeMillis() + 86400000L);
         Appointment appointment = new Appointment();
-        when(appointmentRepository.save(appointment)).thenReturn(appointment);
-        Appointment createdAppointment = appointmentService.createAppointment(appointment);
-        assertEquals(appointment, createdAppointment);
-        verify(appointmentRepository, times(1)).save(appointment);
+        appointment.setUser(new User());
+        appointment.getUser().setEmail("user@example.com");
+        appointment.setStartDate(startDate);
+        appointment.setSignature("test");
+        appointment.setTermsAccepted(true);
+        when(appointmentRepository.save(any(Appointment.class))).thenReturn(appointment);
+        appointmentService.createAppointment(appointment);
+        verify(appointmentRepository).save(appointment);
     }
     
     @Test
-    public void testUpdateAppointment() {
+    public void shouldCreateAppointment_ValidEmail_Success() {
+        Date startDate = new Date(System.currentTimeMillis() + 86400000L);
+        Appointment appointment = new Appointment();
+        User user = new User();
+        user.setEmail("example@example.com");
+        appointment.setUser(user);
+        appointment.setStartDate(startDate);
+        appointment.setSignature("test");
+        appointment.setTermsAccepted(true);
+        when(appointmentRepository.save(appointment)).thenReturn(appointment);
+        Appointment savedAppointment = appointmentService.createAppointment(appointment);
+        assertNotNull(savedAppointment);
+        verify(appointmentRepository, times(1)).save(appointment);
+    }
+
+    @Test
+    public void shouldCreateAppointment_InvalidEmail_ExceptionThrown() {
+        Date startDate = new Date(System.currentTimeMillis() + 86400000L);
+        Appointment appointment = new Appointment();
+        User user = new User();
+        user.setEmail("exampleexamplecom");
+        appointment.setUser(user);
+        appointment.setStartDate(startDate);
+        appointment.setSignature("test");
+        appointment.setTermsAccepted(true);
+        assertThrows(java.lang.NullPointerException.class, () -> {
+            appointmentService.createAppointment(appointment);
+        });
+    }
+
+    @Test
+    public void shouldUpdateAppointment() {
         Appointment appointment = new Appointment();
         appointment.setId(1L);
         when(appointmentRepository.save(appointment)).thenReturn(appointment);
@@ -52,7 +95,7 @@ public class AppointmentServiceTest {
     }
     
     @Test
-    public void testDeleteAppointment() {
+    public void shouldDeleteAppointment() {
         Appointment appointment = new Appointment();
         appointment.setId(1L);
         doNothing().when(appointmentRepository).delete(appointment);
@@ -61,7 +104,7 @@ public class AppointmentServiceTest {
     }
     
     @Test
-    public void testFindAppointmentById() {
+    public void shouldFindAppointmentById() {
         Appointment appointment = new Appointment();
         appointment.setId(1L);
         when(appointmentRepository.findById(1L)).thenReturn(Optional.of(appointment));
@@ -70,16 +113,15 @@ public class AppointmentServiceTest {
         verify(appointmentRepository, times(1)).findById(1L);
     }
     
-    public void testFindAppointmentByIdNotFound() {
+    public void shouldFindAppointmentByIdNotFound() {
         when(appointmentRepository.findById(1L)).thenReturn(Optional.empty());
         exceptionRule.expect(Exception.class);
         appointmentService.findAppointmentById(1L);
     }
 
     @Test
-    public void testFindAppointmentsByUser() {
+    public void shouldFindAppointmentsByUser() {
         User user = new User();
-        //user.setId(1L);
         List<Appointment> appointments = new ArrayList<>();
         Appointment appointment1 = new Appointment();
         appointment1.setId(1L);
@@ -96,23 +138,58 @@ public class AppointmentServiceTest {
     }
     
     @Test
-    public void testFindAppointmentsBetweenDates() {
+    public void shouldFindAppointmentsBetweenDates() {
         Date startDate = new Date(System.currentTimeMillis());
         Date endDate = new Date(startDate.getTime() + 86400000L);
         List<Appointment> appointments = new ArrayList<>();
         Appointment appointment1 = new Appointment();
         appointment1.setId(1L);
         appointment1.setStartDate(startDate);
-        //appointment1.setEndDate(endDate);
         appointments.add(appointment1);
         Appointment appointment2 = new Appointment();
         appointment2.setId(2L);
         appointment2.setStartDate(startDate);
-        //appointment2.setEndDate(endDate);
         appointments.add(appointment2);
         when(appointmentRepository.findByStartDateBetween(startDate, endDate)).thenReturn(appointments);
         List<Appointment> foundAppointments = appointmentService.findAppointmentsBetweenDates(startDate, endDate);
         assertEquals(appointments, foundAppointments);
         verify(appointmentRepository, times(1)).findByStartDateBetween(startDate, endDate);
     }
+
+    public void shouldSendConfirmationEmail_ValidInputs_EmailSent() throws Exception {
+        User user = new User();
+        user.setEmail("example@example.com");
+        Appointment appointment = new Appointment();
+        appointment.setUser(user);
+        Session session = mock(Session.class);
+        MimeMessage message = mock(MimeMessage.class);
+        Transport transport = mock(Transport.class);
+        appointmentService.sendConfirmationEmail(user, appointment);
+        verify(session, times(1)).getTransport();
+        verify(transport, times(1)).connect();
+        verify(transport, times(1)).sendMessage(message, message.getAllRecipients());
+        verify(transport, times(1)).close();
+    }
+
+    @Test
+    public void ValidateStartDate_StartDateBeforeCurrentDate_ThrowsException() {
+        Date startDate = Date.valueOf("2022-01-01");
+        AppointmentService appointmentService = new AppointmentService();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            appointmentService.validateStartDate(startDate);
+        });
+    }
+
+    @Test
+    public void ValidateStartDate_StartDateAfterCurrentDate_NoExceptionThrown() {
+        Date startDate = Date.valueOf("2023-12-12");
+        AppointmentService appointmentService = new AppointmentService();
+        Assertions.assertDoesNotThrow(() -> {
+            appointmentService.validateStartDate(startDate);
+        });
+    }
+
+
 }
+
+

@@ -22,10 +22,14 @@ public class AppointmentService {
     private AppointmentRepository appointmentRepository;
 
     public Appointment createAppointment(Appointment appointment) {
+        validateStartDate(appointment.getStartDate());
+        isValidTermsAccepted(appointment.getTermsAccepted());
+        isValidSignature(appointment.getSignature());
         Appointment savedAppointment = appointmentRepository.save(appointment);
         sendConfirmationEmail(savedAppointment.getUser(), savedAppointment);
         return savedAppointment;
     }
+
     public Appointment updateAppointment(Appointment appointment) {
         return appointmentRepository.save(appointment);
     }
@@ -54,8 +58,8 @@ public class AppointmentService {
     public List<Appointment> findAllAppointments(){
         return appointmentRepository.findAll();
     }
-//mizyyfjtlahjotik
-    private void sendConfirmationEmail(User user, Appointment appointment) {
+
+    public void sendConfirmationEmail(User user, Appointment appointment) {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
@@ -67,7 +71,6 @@ public class AppointmentService {
                 return new PasswordAuthentication("airetupalCVDS@gmail.com", "mizyyfjtlahjotik");
             }
         });
-
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("airetupalCVDS@gmail.com"));
@@ -75,11 +78,30 @@ public class AppointmentService {
             message.setSubject("Confirmación de cita");
             message.setText("Hola " + user.getName() + ",\n\n"
                 + "Te confirmamos que tu cita para el día " + appointment.getStartDate()
-                + " ha sido agendada correctamente.\n\n"
+                + " a las " + appointment.getTime() + " ha sido agendada correctamente.\n\n"
                 + "¡Gracias por confiar en nosotros!");
             Transport.send(message);
         } catch (MessagingException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void validateStartDate(Date startDate) {
+        Date currentDate = new Date(System.currentTimeMillis());
+        if (startDate.before(currentDate)) {
+            throw new IllegalArgumentException("La fecha de inicio no puede ser anterior a la fecha actual");
+        }
+    }
+
+    private void isValidTermsAccepted(Boolean termsAccepted) {
+        if (termsAccepted == null){
+            throw new IllegalArgumentException("Confirme los terminos y condiciones");
+        }
+    }
+
+    private void isValidSignature(String signature) {
+        if (signature == null){
+            throw new IllegalArgumentException("No a escrito du firma esta vacio");
         }
     }
 }

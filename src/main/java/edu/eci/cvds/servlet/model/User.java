@@ -2,7 +2,9 @@ package edu.eci.cvds.servlet.model;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Column;
+
+import java.sql.Date;
+
 import javax.persistence.Entity;
 
 
@@ -12,20 +14,15 @@ import javax.persistence.Entity;
 public class User{
     @Id
     private String name;
-    @Column(name="email", nullable = false)
     private String email;
-    @Column(name="telephone", nullable = false)
-    private String telephone;
-    @Column(name="password", nullable = false)
     private String password;
 
 
     public User(){}
 
-    public User(String name, String email, String telephone,String password){
+    public User(String name, String email, String password,String description){
         this.name = name;
         this.email = email;
-        this.telephone = telephone;
         this.password = password;
     }
 
@@ -53,21 +50,12 @@ public class User{
         this.password = password;
     }
 
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
-        result = prime * result + ((telephone == null) ? 0 : telephone.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         return result;
     }
@@ -91,11 +79,6 @@ public class User{
                 return false;
         } else if (!email.equals(other.email))
             return false;
-        if (telephone == null) {
-            if (other.telephone != null)
-                return false;
-        } else if (!telephone.equals(other.telephone))
-            return false;
         if (password == null) {
             if (other.password != null)
                 return false;
@@ -106,7 +89,10 @@ public class User{
 
     @Override
     public String toString() {
-        return "User [name=" + name + ", email=" + email + ", telephone=" + telephone + ", password=" + password + "]";
+        return "User [name=" + name + ", email=" + email + ", password=" + password + "]";
+    }
+
+    public void setStartDate(Date startDate) {
     }
     
 }
