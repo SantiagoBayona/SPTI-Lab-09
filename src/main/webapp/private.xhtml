@@ -30,20 +30,31 @@
                         styleClass="rounded-button ui-button-danger" actionListener="#{loginBean.signOut()}"
                         action="index.xhtml?faces-redirect=true" />
                 </div>
-                <p:dataTable id="dtcitas" var="appointment" value="#{appointmentBean.appointments}">
+                <p:dataTable id="dtcitas" var="appointment" value="#{appointmentBean.appointments}"
+                rowKey="#{appointment.id}" selection="#{appointmentBean.selectedAppointment}" selectionMode="single">
+                    <p:column headerText="id cita">
+                        <h:outputText value="#{appointment.id}" />
+                    </p:column>
                     <p:column headerText="Nombre del Cliente">
                         <h:outputText value="#{appointment.user.name}" />
                     </p:column>
                     <p:column headerText="Fecha de inicio">
                         <h:outputText value="#{appointment.startDate}" />
                     </p:column>
-                    <p:column headerText="TyC aceptados">
-                        <h:outputText value="#{appointment.termsAccepted}" />
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{appointment.state}" />
+                    </p:column>
+                    <p:column headerText="telefono">
+                        <h:outputText value="#{appointment.user.telephone}" />
                     </p:column>
                     <p:column headerText="Firma">
                         <h:outputText value="#{appointment.signature}" />
                     </p:column>
                 </p:dataTable>
+                <p:contextMenu for="dtcitas">
+                    <p:menuitem value="Atendida" action="#{appointmentBean.modifyState(Atendida)}" icon="pi pi-check-circle" update="dtcitas"/>
+                    <p:menuitem value="cancelar" action="#{appointmentBean.modifyState(Cancelada)}" icon="pi pi-times" update="dtcitas"/>
+                </p:contextMenu>
                 <div class="button-down">
                     <p:commandButton class="download" value="download" icon="pi pi-download"
                         styleClass="ui-button-raised ui-button-success" ajax="false">

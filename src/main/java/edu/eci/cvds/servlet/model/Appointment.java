@@ -20,7 +20,7 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_name", nullable = false)
     private User user;
     @Column(name = "start_date", nullable = false)
@@ -31,15 +31,18 @@ public class Appointment {
     private String description;
     @Column(name = "signature", nullable = false)
     private String signature;
+    @Column(name = "state", nullable = false )
+    private String state;
 
     public Appointment(){}
 
-    public Appointment(User user, Date startDate, boolean termsAccepted, String description, String signature) {
+    public Appointment(User user, Date startDate, boolean termsAccepted, String description, String signature, String state) {
         this.user = user;
         this.startDate = startDate;
         this.termsAccepted = termsAccepted;
         this.description = description;
         this.signature = signature;
+        this.state = state;
     }
 
     public Long getId() {
@@ -82,6 +85,23 @@ public class Appointment {
         this.user = user;
     }
 
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+    
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -91,6 +111,8 @@ public class Appointment {
         result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
         result = prime * result + (termsAccepted ? 1231 : 1237);
         result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((signature == null) ? 0 : signature.hashCode());
+        result = prime * result + ((state == null) ? 0 : state.hashCode());
         return result;
     }
 
@@ -125,21 +147,24 @@ public class Appointment {
                 return false;
         } else if (!description.equals(other.description))
             return false;
+        if (signature == null) {
+            if (other.signature != null)
+                return false;
+        } else if (!signature.equals(other.signature))
+            return false;
+        if (state == null) {
+            if (other.state != null)
+                return false;
+        } else if (!state.equals(other.state))
+            return false;
         return true;
     }
 
     @Override
     public String toString() {
         return "Appointment [id=" + id + ", user=" + user + ", startDate=" + startDate + ", termsAccepted="
-                + termsAccepted + ", description=" + description + "]";
-    }
-    
-    public String getSignature() {
-        return signature;
-    }
-
-    public void setSignature(String signature) {
-        this.signature = signature;
+                + termsAccepted + ", description=" + description + ", signature=" + signature + ", state=" + state
+                + "]";
     }
     
 }

@@ -15,7 +15,7 @@ body{
 }
 
 .welcome_user .text_welcome {
-    position: absolute;
+    position: relative;
     left: 30px;
 }
 

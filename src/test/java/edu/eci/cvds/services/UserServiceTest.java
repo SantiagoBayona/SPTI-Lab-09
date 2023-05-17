@@ -25,7 +25,7 @@ public class UserServiceTest {
 
     @Test
     public void shoulCreateUser() {
-        User user = new User("user pruebas", "pruebas@mail.com", "password", "description");
+        User user = new User("user pruebas", "pruebas@mail.com", "123456879","password");
         when(userRepository.save(any(User.class))).thenReturn(user);
         User createdUser = userService.createUser(user);
         assertEquals(user, createdUser);
@@ -34,7 +34,7 @@ public class UserServiceTest {
 
     @Test
     public void shoulUpdateUser() {
-        User user = new User("user pruebas", "pruebas@mail.com", "password", "description");
+        User user = new User("user pruebas", "pruebas@mail.com", "123456879","password");
         when(userRepository.save(any(User.class))).thenReturn(user);
         User updatedUser = userService.updateUser(user);
         assertEquals(user, updatedUser);
@@ -43,14 +43,14 @@ public class UserServiceTest {
 
     @Test
     public void shoulDeleteUser() {
-        User user = new User("user pruebas", "pruebas@mail.com", "password", "description");
+        User user = new User("user pruebas", "pruebas@mail.com", "123456879","password");
         userService.deleteUser(user);
         verify(userRepository, times(1)).delete(user);
     }
 
     @Test
     public void shoulFindUserByEmail() {
-        User user = new User("user pruebas", "pruebas@mail.com", "password", "description");
+        User user = new User("user pruebas", "pruebas@mail.com", "123456879","password");
         when(userRepository.findByEmail(user.getEmail())).thenReturn(user);
         User foundUser = userService.findUserByEmail(user.getEmail());
         assertEquals(user, foundUser);
