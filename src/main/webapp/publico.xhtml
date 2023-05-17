@@ -8,7 +8,7 @@
     <link rel="icon" href="imagenes/icon.png" />
     <link rel="stylesheet" type="text/css" href="CSS/agendacion_citas.css"/>
 </h:head>
-<h:body>    
+<h:body onload="limpiarFormulario()">    
     <section>
         <div class="cita-box">
             <h:form class="formulario">
@@ -68,6 +68,17 @@
         <p>El pago a realizar por la consulta no podrá ser devuelto a menos que en común acuerdo con HALS se determine esa opción.</p>
     </p:dialog>
     </section>
+    <script>
+        function limpiarFormulario() {
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('telephone').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('startDate_input').value = '';
+            PF('sig').clear();
+            document.getElementById('termsAccepted').checked = false;
+        }
+    </script>
     
     
 </h:body>
