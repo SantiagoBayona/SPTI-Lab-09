@@ -1,4 +1,11 @@
 # Maven
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure for Students(1fdc25d3-d2d8-4ae3-aa67-b8f14b555d12)'
+    appType: 'webApp'
+    WebAppName: 'hals-app'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 - task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
