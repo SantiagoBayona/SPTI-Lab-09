@@ -1,8 +1,8 @@
 package edu.eci.cvds.servlet.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
 import javax.persistence.Table;
 
 @Entity
@@ -11,6 +11,7 @@ public class Administrator {
     
     @Id
     private String name;
+    @Column(name="password", nullable = false)
     private String password;
 
     public Administrator(String name, String password){

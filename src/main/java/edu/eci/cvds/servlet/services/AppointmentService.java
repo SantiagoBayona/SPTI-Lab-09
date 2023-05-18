@@ -78,7 +78,7 @@ public class AppointmentService {
             message.setSubject("Confirmación de cita");
             message.setText("Hola " + user.getName() + ",\n\n"
                 + "Te confirmamos que tu cita para el día " + appointment.getStartDate()
-                + " a las " + appointment.getTime() + " ha sido agendada correctamente.\n\n"
+                + " ha sido agendada correctamente.\n\n"
                 + "¡Gracias por confiar en nosotros!");
             Transport.send(message);
         } catch (MessagingException e) {
