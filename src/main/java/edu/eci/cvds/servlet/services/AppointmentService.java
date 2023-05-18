@@ -23,7 +23,7 @@ public class AppointmentService {
 
     public Appointment createAppointment(Appointment appointment) {
         validateStartDate(appointment.getStartDate());
-        isValidTermsAccepted(appointment.getTermsAccepted());
+        isValidTermsAccepted(appointment.isTermsAccepted());
         isValidSignature(appointment.getSignature());
         Appointment savedAppointment = appointmentRepository.save(appointment);
         sendConfirmationEmail(savedAppointment.getUser(), savedAppointment);
