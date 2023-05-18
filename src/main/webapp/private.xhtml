@@ -21,6 +21,7 @@
     </header>
     <section>
         <h:form class="structure">
+           
             <div class="card">
                 <div class="buttons">
                     <p:commandButton id="button1" value="Refrescar" icon="pi pi-undo"
@@ -31,7 +32,7 @@
                         action="index.xhtml?faces-redirect=true" />
                 </div>
                 <p:dataTable id="dtcitas" var="appointment" value="#{appointmentBean.appointments}"
-                rowKey="#{appointment.id}" selection="#{appointmentBean.selectedAppointment}" selectionMode="single">
+                rowKey="#{appointment.id}" selection="#{appointmentBean.selectedAppointment}" selectionMode="single" >
                     <p:column headerText="id cita">
                         <h:outputText value="#{appointment.id}" />
                     </p:column>
@@ -47,8 +48,11 @@
                     <p:column headerText="telefono">
                         <h:outputText value="#{appointment.user.telephone}" />
                     </p:column>
-                    <p:column headerText="Firma">
-                        <h:outputText value="#{appointment.signature}" />
+                    <p:column headerText="Firma"  style="width: 22%">
+                        <p:outputPanel id="output">
+                            <h:outputText rendered="#{not empty appointment.signature}" style="font-size:1.5rem" styleClass="block mb-2" value="Your Signature" />
+                            <p:signature style="width:400px;height:200px;" value="#{appointment.signature}" readonly="true" rendered="#{not empty appointment.signature}" backgroundColor="#eaeaea" color="#03a9f4"/>
+                        </p:outputPanel>
                     </p:column>
                 </p:dataTable>
                 <p:contextMenu for="dtcitas">

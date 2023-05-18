@@ -45,7 +45,7 @@
                     <p:commandButton value="Clear" icon="pi pi-times" type="button" onclick="PF('sig').clear()" styleClass="ui-button-flat ml-2"/>
     
                     <p:outputPanel id="output">
-                        <h:outputText rendered="#{not empty appointmentBean.signature}" style="font-size:1.5rem" styleClass="block mb-2" value="Your Signature" />
+                        <h:outputText rendered="#{appointmentBean.signature}" style="font-size:1.5rem" styleClass="block mb-2" value="Your Signature" />
                         <p:signature style="width:400px;height:200px;" value="#{appointmentBean.signature}" readonly="true" rendered="#{not empty appointmentBean.signature}" backgroundColor="#eaeaea" color="#03a9f4"/>
                     </p:outputPanel>     
                 </div>
