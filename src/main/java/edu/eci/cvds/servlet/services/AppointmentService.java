@@ -8,7 +8,7 @@ import edu.eci.cvds.exception.Exception;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -76,10 +76,10 @@ public class AppointmentService {
             message.setFrom(new InternetAddress("airetupalCVDS@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user.getEmail()));
             message.setSubject("Confirmación de cita");
-            message.setText("Hola " + user.getName() + ",\n\n"
-                + "Te confirmamos que tu cita para el día " + appointment.getStartDate()
-                + " ha sido agendada correctamente.\n\n"
-                + "¡Gracias por confiar en nosotros!");
+            message.setText("Hello " + user.getName() + ",\n\n"
+                + "We confirm that your appointment for " + appointment.getStartDate()
+                + " has been successfully scheduled.\n\n"
+                + "¡Thank you for trusting us!");
             Transport.send(message);
         } catch (MessagingException e) {
             throw new RuntimeException(e);

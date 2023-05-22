@@ -16,7 +16,7 @@ import org.junit.Rule;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.List;
-import java.sql.Date;
+import java.util.Date;
 
 import edu.eci.cvds.servlet.repositories.AppointmentRepository;
 import edu.eci.cvds.servlet.services.AppointmentService; 
@@ -172,23 +172,22 @@ public class AppointmentServiceTest {
     }
 
     @Test
-    public void ValidateStartDate_StartDateBeforeCurrentDate_ThrowsException() {
-        Date startDate = Date.valueOf("2022-01-01");
+    public void validateStartDate_StartDateBeforeCurrentDate_ThrowsException() {
+        Date startDate = new Date(122, 0, 1); // Year is represented as year - 1900, so 2022 becomes 122
         AppointmentService appointmentService = new AppointmentService();
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             appointmentService.validateStartDate(startDate);
         });
     }
-
+    
     @Test
-    public void ValidateStartDate_StartDateAfterCurrentDate_NoExceptionThrown() {
-        Date startDate = Date.valueOf("2023-12-12");
+    public void validateStartDate_StartDateAfterCurrentDate_NoExceptionThrown() {
+        Date startDate = new Date(123, 11, 12); // Year is represented as year - 1900, so 2023 becomes 123
         AppointmentService appointmentService = new AppointmentService();
         Assertions.assertDoesNotThrow(() -> {
             appointmentService.validateStartDate(startDate);
         });
     }
-
 
 }
 

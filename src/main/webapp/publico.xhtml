@@ -33,9 +33,11 @@
                     <p:inputTextarea class="entrada" id="description" value="#{appointmentBean.description}" rows="5"/>
                 </div>
 
-                <div class="input-box no-border">
-                    <h:outputLabel class="label" value="Date:" for="startDate" showRequired="false"/>
-                    <p:calendar class="bg-blue-400" id="startDate" value="#{appointmentBean.startDate}"  showButtonPanel="true" pattern="dd/MM/yyyy HH"  converter="dateConverter" />
+                <div class="field col-12 md:col-4">
+
+                    <p:outputLabel for="startDate" value="Time (Min-Max)"/>
+                    <p:datePicker id="startDate" value="#{appointmentBean.startDate}" showTime="true"
+                              mindate="#{appointmentBean.startDate}" maxdate="#{appointmentBean.startDate}"/>
                 </div>
 
                 <div class="signature">
