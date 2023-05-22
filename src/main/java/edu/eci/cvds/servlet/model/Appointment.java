@@ -1,6 +1,6 @@
 package edu.eci.cvds.servlet.model;
 
-import java.sql.Clob;
+
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
-
 
 @Entity
 @Table(name = "appointments")

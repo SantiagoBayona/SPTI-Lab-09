@@ -9,10 +9,12 @@ import org.springframework.stereotype.Component;
 
 import edu.eci.cvds.servlet.model.Administrator;
 import edu.eci.cvds.servlet.services.AdminService;
+import lombok.Data;
 
 @Component
 @ManagedBean
 @ApplicationScoped
+@Data
 public class LoginBean {
 
     @Autowired
@@ -20,19 +22,6 @@ public class LoginBean {
 
     private String adminName;
     private String passwd;
-
-    public String getAdminName() {
-        return adminName;
-    }
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
-    }
-    public String getPasswd() {
-        return passwd;
-    }
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
-    }
     
     public String enter(){
         String route = "login.xhtml";
