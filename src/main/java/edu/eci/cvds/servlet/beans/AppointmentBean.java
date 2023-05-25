@@ -1,9 +1,10 @@
 package edu.eci.cvds.servlet.beans;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -31,12 +32,22 @@ public class AppointmentBean implements Serializable {
     private String telephone;
     private String email;
     private Date startDate;
+    private Date minDate;
+    private Date maxDate;
     private boolean termsAccepted;
     private String description;
     private String signature;
     private String state = "Agendada";
     private Appointment selectedAppointment;
     private ArrayList<Appointment> appointments;
+
+    @PostConstruct
+    public void init(){
+        Date today = new Date();
+        long day = 24 * 60 * 60 * 1000;
+        minDate = new Date(today.getTime() - (7*day));
+        maxDate = new Date(today.getTime() + (7*day));
+    }
 
     public String logiregistern (){
         User temp = new User(this.name, this.email, this.telephone,"no pass");
@@ -60,8 +71,18 @@ public class AppointmentBean implements Serializable {
         this.appointments= (ArrayList<Appointment>) this.appointmentService.findAllAppointments();
     }
 
-    public void modifyState(String state){
-        this.selectedAppointment.setState(state);
+    public void attended(){
+        this.selectedAppointment.setState("Atendida");
+        this.appointmentService.updateAppointment(this.selectedAppointment);
+    }
+
+    public void canceled(){
+        this.selectedAppointment.setState("Cancelada");
+        this.appointmentService.updateAppointment(this.selectedAppointment);
+    }
+
+    public void paid(){
+        this.selectedAppointment.setState("Pagada");
         this.appointmentService.updateAppointment(this.selectedAppointment);
     }
 }

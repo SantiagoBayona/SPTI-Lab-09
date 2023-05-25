@@ -50,14 +50,15 @@
                     </p:column>
                     <p:column headerText="Firma"  style="width: 22%">
                         <p:outputPanel id="output">
-                            <h:outputText rendered="#{not empty appointment.signature}" style="font-size:1.5rem" styleClass="block mb-2" value="Your Signature" />
+                            <h:outputText rendered="#{not empty appointment.signature}" style="font-size:1.5rem" styleClass="block mb-2" />
                             <p:signature style="width:400px;height:200px;" value="#{appointment.signature}" readonly="true" rendered="#{not empty appointment.signature}" backgroundColor="#eaeaea" color="#03a9f4"/>
                         </p:outputPanel>
                     </p:column>
                 </p:dataTable>
                 <p:contextMenu for="dtcitas">
-                    <p:menuitem value="Atendida" action="#{appointmentBean.modifyState(Atendida)}" icon="pi pi-check-circle" update="dtcitas"/>
-                    <p:menuitem value="cancelar" action="#{appointmentBean.modifyState(Cancelada)}" icon="pi pi-times" update="dtcitas"/>
+                    <p:menuitem value="Pagada" action="#{appointmentBean.paid}" icon="pi pi-dollar" update="dtcitas"/>
+                    <p:menuitem value="Atendida" action="#{appointmentBean.attended}" icon="pi pi-check-circle" update="dtcitas"/>
+                    <p:menuitem value="cancelar" action="#{appointmentBean.canceled}" icon="pi pi-times" update="dtcitas"/>
                 </p:contextMenu>
                 <div class="button-down">
                     <p:commandButton class="download" value="download" icon="pi pi-download"
