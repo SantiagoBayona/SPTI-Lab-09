@@ -12,5 +12,6 @@
 >> - Modelo de clases del aplicativo
 >> ![](src/main/webapp/imagenes/modelo_clases.png)
 >> - Modelo de Datos
+>>
 >> ![](src/main/webapp/imagenes/modelo_BD.png)
 >
