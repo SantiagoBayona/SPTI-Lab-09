@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+      
+<h:head>
+
+    <title>Programación de Consulta</title>
+    <link rel="icon" href="imagenes/icon.png" />
+    <link rel="stylesheet" type="text/css" href="CSS/agendacion_citas.css"/>
+</h:head>
+<h:body onload="limpiarFormulario()">    
+    <section>
+        <div class="cita-box">
+            <h:form class="formulario">
+                <h2>Schedule Appointment</h2>
+                <div class="input-box">
+                    <h:outputLabel class="label" value="Names And Surnames" for="name" showRequired="false"/>
+                    <p:inputText class="entrada"  id="name" value="#{appointmentBean.name}" required="true"/>
+                </div>
+
+                <div class="input-box">
+                    <h:outputLabel class="label" value="Email" for="email" showRequired="false"/>
+                    <p:inputText class="entrada" id="email" value="#{appointmentBean.email}" required="true"/>
+                </div> 
+
+                <div class="input-box">
+                    <h:outputLabel class="label" value="Telephone Contact" for="telephone" showRequired="false"/>
+                    <p:inputText class="entrada" id="telephone" value="#{appointmentBean.telephone}" required="true"/>
+                </div>
+                
+                <div class="input-box">
+                    <h:outputLabel class="label" value="Appointment Description" for="description" showRequired="false"/>
+                    <p:inputTextarea class="entrada" id="description" value="#{appointmentBean.description}" rows="5"/>
+                </div>
+
+                <div class="signature">
+
+                    <p:outputLabel for="startDate" value="Time (Min-Max)"/>
+                    <p:datePicker id="startDate" value="#{appointmentBean.startDate}" showTime="true"
+                              mindate="#{appointmentBean.startDate}" maxdate="#{appointmentBean.maxDate}"/>
+                </div>
+
+                <div class="input-box">
+                    
+                    <h:outputLabel class="label" value="PDF File" for="pdfFile" showRequired="false"/>
+                    <p:fileUpload id="pdfFile" mode="simple" fileLimit="1" allowTypes="/(\.|\/)(pdf)$/" value="#{appointmentBean.pdfFile}" />
+                </div>
+                
+                <div class="input-box">
+                    <h:outputLabel class="label" value="Image File" for="imageFile" showRequired="false"/>
+                    <p:fileUpload id="imageFile" mode="simple" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{appointmentBean.imageFile}" />
+                </div>                
+
+                <div class="signature">
+                    <h:outputLabel class="label" value="Signature:" showRequired="false"/>
+                    <p:signature style="width:400px;height:200px;" widgetVar="sig" value="#{appointmentBean.signature}" backgroundColor="rgb(200, 200, 200)" color="#000EFF"  required="true"  guideline="true"/>
+                    <p:commandButton value="Submit" icon="pi pi-check" update="output"/>
+                    <p:commandButton value="Clear" icon="pi pi-times" type="button" onclick="PF('sig').clear()" styleClass="ui-button-flat ml-2"/>
+    
+                    <p:outputPanel id="output">
+                        <h:outputText rendered="#{appointmentBean.signature}" style="font-size:1.5rem" styleClass="block mb-2" value="Your Signature" />
+                        <p:signature style="width:400px;height:200px;" value="#{appointmentBean.signature}" readonly="true" rendered="#{not empty appointmentBean.signature}" backgroundColor="0422E1" color="#FFFFFF"/>
+                    </p:outputPanel>     
+                </div>
+                
+                <div class="conditions">
+                    <h:outputLabel class="label" value="I Accept The Terms And Conditions" for="termsAccepted" showRequired="false"/>
+                    <p:selectBooleanCheckbox class="p" id="termsAccepted" value="#{appointmentBean.termsAccepted}" required="true"/>
+                </div>
+
+                <div class="agendar">
+                    <p:commandLink  value="See Terms And Conditions" onclick="PF('dlgTerminosCondiciones').show(); return false;" style="color: cyan;"/>
+                    <p:commandButton class="boton-formulario" value="Schedule Appointment" action="#{appointmentBean.logiregistern}"/>
+                    
+                </div>
+
+            
+            </h:form>
+        </div>
+
+    <p:dialog header="Terms And Conditions" widgetVar="dlgTerminosCondiciones" modal="true">
+        <p>The payment to be made for the consultation cannot be returned unless this option is determined by mutual agreement with HALS.</p>
+    </p:dialog>
+    </section>
+    <script>
+        function limpiarFormulario() {
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('telephone').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('startDate_input').value = '';
+            PF('sig').clear();
+            document.getElementById('termsAccepted').checked = false;
+        }
+    </script>
+    
+    
+</h:body>
+</html>
