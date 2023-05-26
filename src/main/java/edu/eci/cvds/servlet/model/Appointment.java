@@ -37,17 +37,25 @@ public class Appointment {
     private String signature;
     @Column(name = "state", nullable = false )
     private String state;
+    @Lob
+    @Column(name = "pdf", nullable = true)
+    private byte[] pdf;
+    @Lob
+    @Column(name = "image", nullable = true)
+    private byte[] image;
     
     public Appointment(){
         
     }
 
-    public Appointment(User user, Date startDate, boolean termsAccepted, String description, String signature, String state) {
+    public Appointment(User user, Date startDate, boolean termsAccepted, String description, String signature, String state, byte[] pdf, byte[] image) {
         this.user = user;
         this.startDate = startDate;
         this.termsAccepted = termsAccepted;
         this.description = description;
         this.signature = signature;
         this.state = state;
+        this.pdf = pdf;
+        this.image = image;
     }
 }

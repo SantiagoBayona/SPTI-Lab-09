@@ -33,12 +33,23 @@
                     <p:inputTextarea class="entrada" id="description" value="#{appointmentBean.description}" rows="5"/>
                 </div>
 
-                <div class="field col-12 md:col-4">
+                <div class="signature">
 
                     <p:outputLabel for="startDate" value="Time (Min-Max)"/>
                     <p:datePicker id="startDate" value="#{appointmentBean.startDate}" showTime="true"
                               mindate="#{appointmentBean.startDate}" maxdate="#{appointmentBean.maxDate}"/>
                 </div>
+
+                <div class="input-box">
+                    
+                    <h:outputLabel class="label" value="PDF File" for="pdfFile" showRequired="false"/>
+                    <p:fileUpload id="pdfFile" mode="simple" fileLimit="1" allowTypes="/(\.|\/)(pdf)$/" value="#{appointmentBean.pdfFile}" />
+                </div>
+                
+                <div class="input-box">
+                    <h:outputLabel class="label" value="Image File" for="imageFile" showRequired="false"/>
+                    <p:fileUpload id="imageFile" mode="simple" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" value="#{appointmentBean.imageFile}" />
+                </div>                
 
                 <div class="signature">
                     <h:outputLabel class="label" value="Signature:" showRequired="false"/>
@@ -62,6 +73,7 @@
                     <p:commandButton class="boton-formulario" value="Schedule Appointment" action="#{appointmentBean.logiregistern}"/>
                     
                 </div>
+
             
             </h:form>
         </div>
